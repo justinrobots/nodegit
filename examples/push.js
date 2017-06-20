@@ -41,10 +41,6 @@ fse.remove(path.resolve(__dirname, repoDir))
       return index.writeTree();
     });
 })
-.then(function(oid) {
-  return repository.createCommit("HEAD", signature, signature,
-    "initial commit", oid, []);
-})
 
 // Add a new remote
 .then(function() {
