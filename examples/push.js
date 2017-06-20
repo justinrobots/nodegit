@@ -32,15 +32,6 @@ fse.remove(path.resolve(__dirname, repoDir))
 .then(function() {
   return repository.refreshIndex();
 })
-.then(function(index) {
-  return index.addByPath(fileName)
-    .then(function() {
-      return index.write();
-    })
-    .then(function() {
-      return index.writeTree();
-    });
-})
 .then(function(oid) {
   return repository.createCommit("HEAD", signature, signature,
     "initial commit", oid, []);
