@@ -58,7 +58,7 @@ Nick Kallen [@nk](http://twitter.com/nk)
 NodeGit will work on most systems out-of-the-box without any native
 dependencies.
 
-test 
+testing
 ``` bash
 npm install nodegit
 ```

@@ -11,3 +11,5 @@ As seen in nodegit/#959 -- some golang hackers have started to use the following
         insteadOf = https://github.com/
 ```
 But if you do this, code can call `NodeGit.Clone.clone(url: 'https://foo')` and have the `authentication` callback be asked for **SSH** credentials instead of HTTPS ones, which might not be what your application expected.
+
+test
