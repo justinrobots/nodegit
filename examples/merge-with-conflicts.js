@@ -46,6 +46,19 @@ fse.remove(path.resolve(__dirname, repoDir))
   );
 })
 
+// create our branches
+.then(function() {
+  return repository.createBranch(ourBranchName, baseCommitOid)
+    .then(function(branch) {
+      ourBranch = branch;
+    });
+})
+.then(function() {
+  return repository.createBranch(theirBranchName, baseCommitOid)
+    .then(function(branch) {
+      theirBranch = branch;
+    });
+})
 
 // Load up the repository index and make our initial commit to HEAD
 .then(function() {
@@ -69,21 +82,6 @@ fse.remove(path.resolve(__dirname, repoDir))
   return repository.getCommit(commitOid)
     .then(function(commit) {
       baseCommit = commit;
-    });
-})
-
-
-// create our branches
-.then(function() {
-  return repository.createBranch(ourBranchName, baseCommitOid)
-    .then(function(branch) {
-      ourBranch = branch;
-    });
-})
-.then(function() {
-  return repository.createBranch(theirBranchName, baseCommitOid)
-    .then(function(branch) {
-      theirBranch = branch;
     });
 })
 
