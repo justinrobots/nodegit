@@ -53,38 +53,13 @@ fse.remove(path.resolve(__dirname, repoDir))
       ourBranch = branch;
     });
 })
+
 .then(function() {
   return repository.createBranch(theirBranchName, baseCommitOid)
     .then(function(branch) {
       theirBranch = branch;
     });
 })
-
-// Load up the repository index and make our initial commit to HEAD
-.then(function() {
-  return repository.refreshIndex();
-})
-.then(function(index) {
-  return index.addByPath(fileName)
-    .then(function() {
-      return index.write();
-    })
-    .then(function() {
-      return index.writeTree();
-    });
-})
-.then(function(oid) {
-  return repository.createCommit("HEAD", baseSignature,
-    baseSignature, "bobs are all ok", oid, []);
-})
-.then(function(commitOid) {
-  baseCommitOid = commitOid;
-  return repository.getCommit(commitOid)
-    .then(function(commit) {
-      baseCommit = commit;
-    });
-})
-
 
 // Write and commit our version of the file
 .then(function() {
@@ -115,6 +90,30 @@ fse.remove(path.resolve(__dirname, repoDir))
   });
 })
 
+// Load up the repository index and make our initial commit to HEAD
+.then(function() {
+  return repository.refreshIndex();
+})
+.then(function(index) {
+  return index.addByPath(fileName)
+    .then(function() {
+      return index.write();
+    })
+    .then(function() {
+      return index.writeTree();
+    });
+})
+.then(function(oid) {
+  return repository.createCommit("HEAD", baseSignature,
+    baseSignature, "bobs are all ok", oid, []);
+})
+.then(function(commitOid) {
+  baseCommitOid = commitOid;
+  return repository.getCommit(commitOid)
+    .then(function(commit) {
+      baseCommit = commit;
+    });
+})
 
 // Write and commit their version of the file
 .then(function() {
