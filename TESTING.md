@@ -1,5 +1,6 @@
 Test Contribution Guidelines
 ----------------------------
+this is a test
 
 This is a guide on how to contribute test cases to help with coverage testing for NodeGit.
 
